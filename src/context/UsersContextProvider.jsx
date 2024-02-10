@@ -4,12 +4,10 @@ import useFetch from '../hooks/useFetch';
 export const UsersContext = createContext();
 
 const UsersContextProvider = ({children}) => {
-    const [users, loader] = useFetch('https://dummyjson.com/users?skip=0&limit=10');
-
-    console.log(loader);
+    const [data, loader] = useFetch('https://dummyjson.com/users?skip=0&limit=10');
 
     return (
-        <UsersContext.Provider value={{users}}>
+        <UsersContext.Provider value={{data, loader}}>
             {children}
         </UsersContext.Provider>
     );
