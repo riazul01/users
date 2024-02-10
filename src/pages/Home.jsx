@@ -1,9 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState, useEffect, useContext} from 'react';
+
+// layout
 import AppLayout from '../layouts/AppLayout';
+
+// components
+import Users from '../components/Users';
 import Header from '../components/Header';
-import { UsersContext } from '../context/UsersContextProvider';
-import UserCard from '../components/UserCard';
 import Pagination from '../components/Pagination';
+
+// context
+import { UsersContext } from '../context/UsersContextProvider';
 
 const Home = () => {
     const {data, loader} = useContext(UsersContext);
@@ -13,7 +19,7 @@ const Home = () => {
 
     useEffect(() => {
         if (data) {
-            // search
+            // searching
             const filteredData = data.users.filter((user) => {
                 let mainTxt = ''.concat(user.firstName, user.lastName).replace(/[^a-zA-Z0-9@]/g, '').toLowerCase();
                 let srchTxt = searchText.replace(/[^a-zA-Z0-9@]/g, '').toLowerCase();
@@ -55,13 +61,9 @@ const Home = () => {
     return (
         <AppLayout>
             <Header searchText={searchText} setSearchText={setSearchText} sortType={sortType} setSortType={setSortType} users={filteredUsers}/>
-            {data && <div className="py-[2rem] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[1.2rem] place-items-center">
-                {
-                    filteredUsers.map((user) => {
-                        return <UserCard user={user} key={user.id}/>
-                    })
-                }
-            </div>}
+            {searchText !== '' && filteredUsers.length === 0 && <p className="py-[2rem] text-[1.2rem]">No items found!</p>}
+            {loader && <p className="py-[2rem] text-[1.2rem]">Please wait...</p>}
+            {data && <Users users={filteredUsers}/>}
             {data && <Pagination/>}
         </AppLayout>
     );
