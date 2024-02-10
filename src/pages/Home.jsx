@@ -3,11 +3,10 @@ import AppLayout from '../layouts/AppLayout';
 import Header from '../components/Header';
 import { UsersContext } from '../context/UsersContextProvider';
 import UserCard from '../components/UserCard';
+import Pagination from '../components/Pagination';
 
 const Home = () => {
     const {data, loader} = useContext(UsersContext);
-
-    // console.log(data);
 
     return (
         <AppLayout>
@@ -19,6 +18,7 @@ const Home = () => {
                     })
                 }
             </div>}
+            {data && <Pagination/>}
         </AppLayout>
     );
 }
