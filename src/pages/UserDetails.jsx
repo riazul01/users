@@ -3,6 +3,7 @@ import useFetch from '../hooks/useFetch';
 import AppLayout from '../layouts/AppLayout';
 import { Link, useLocation } from 'react-router-dom';
 
+// icons
 import { IoArrowForward, IoArrowBack } from "react-icons/io5";
 import { HiOutlineExternalLink } from "react-icons/hi";
 
@@ -13,9 +14,11 @@ const UserDetails = () => {
 
     return (
         <AppLayout>
+            {/* header */}
             <div className="flex items-center justify-between">
                 <h1 className="text-[#fff] text-[2.2rem] uppercase font-[700] bg-gradient-to-r from-indigo-400 via-sky-400 to-emerald-400 inline-block text-transparent bg-clip-text">User Details.</h1>
                 
+                {/* navigate users */}
                 <div className="flex items-center justify-end gap-[1rem]">
                     <Link to={`/users/${userId === '1' ? '100' : (parseInt(userId) + 99) % 100}`} className="px-[0.8rem] py-[0.55rem] flex items-center gap-[0.2rem] bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 rounded-lg cursor-pointer">
                         <IoArrowBack className="text-[1.2rem]"/>
@@ -28,7 +31,12 @@ const UserDetails = () => {
                 </div>
             </div>
 
-            {user && <div className="py-[2rem] flex justify-start gap-[3rem]">
+            {/* fallbacks */}
+            {loader && <p className="py-[2rem] text-[1.2rem]">Please wait...</p>}
+            {!user && !loader && <p className="py-[2rem] text-[1.2rem]">Something Wrong!</p>}
+
+            {/* details */}
+            {user && <div className="py-[2rem] flex justify-start gap-[3rem] h-[calc(100vh-200px)]">
                 <div className="w-[320px] h-[320px]">
                     <img src={user.image} className="w-full h-full object-cover" alt={user.firstName} />
                     <p className="py-[0.8rem] text-[#ccc] text-[1.2rem] text-center font-[500]">@{user.maidenName}</p>
@@ -99,6 +107,8 @@ const UserDetails = () => {
                     </div>
                 </div>
             </div>}
+
+            <Link to={"/"} className="text-[#ccc] text-[1.3rem] font-[500] underline">Users</Link>
         </AppLayout>
     );
 }
