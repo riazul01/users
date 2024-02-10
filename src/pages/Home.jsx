@@ -54,7 +54,7 @@ const Home = () => {
 
     return (
         <AppLayout>
-            <Header searchText={searchText} setSearchText={setSearchText} sortType={sortType} setSortType={setSortType}/>
+            <Header searchText={searchText} setSearchText={setSearchText} sortType={sortType} setSortType={setSortType} users={filteredUsers}/>
             {data && <div className="py-[2rem] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[1.2rem] place-items-center">
                 {
                     filteredUsers.map((user) => {
