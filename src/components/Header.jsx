@@ -20,8 +20,10 @@ const Header = ({searchText, setSearchText, sortType, setSortType, users}) => {
 
             <div className="flex items-center gap-[1rem]">
                 {/* users count */}
-                <div className="px-[0.8rem] py-[0.55rem] flex items-center bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 rounded-lg cursor-pointer">
-                    <span className="text-[1.1rem] font-[500] me-[0.3rem]">Users: {users.length} / 100</span>
+                <div className="px-[0.8rem] py-[0.55rem] flex items-center gap-[0.2rem] bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 rounded-lg cursor-pointer">
+                    <span className="text-[1.1rem] font-[500]">Users:</span>
+                    <span className="text-[1.1rem] font-[500] flex items-center justify-center w-[1.4rem]">{`${users.length}`.padStart(2, '0')}</span>
+                    <span className="text-[1.1rem] font-[500]">/ 100</span>
                 </div>
 
                 {/* add user */}
