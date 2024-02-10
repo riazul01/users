@@ -4,7 +4,11 @@ import React from 'react';
 import { HiPlus } from "react-icons/hi";
 import { BiSearchAlt } from 'react-icons/bi';
 
-const Header = () => {
+const Header = ({searchText, setSearchText}) => {
+    const handleSearchText = (e) => {
+        setSearchText(e.target.value);
+    }
+
     return (
         <div className="flex items-center justify-between w-full">
             <div className="px-[0.8rem] py-[0.55rem] flex items-center bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 rounded-lg cursor-pointer">
@@ -18,7 +22,7 @@ const Header = () => {
                 </div>
                 
                 <div className="flex items-center justify-center rounded-lg overflow-hidden">          
-                    <input name="searchText" className="pl-[1rem] text-[1.1rem] text-[#fff] h-[44px] w-[360px] bg-[#000] border-[2px] border-emerald-500 outline-none rounded-l-lg" type="text" placeholder="Search users..."/>
+                    <input value={searchText} onChange={handleSearchText} name="searchText" className="pl-[1rem] text-[1.1rem] text-[#fff] h-[44px] w-[360px] bg-[#000] border-[2px] border-emerald-500 outline-none rounded-l-lg" type="text" placeholder="Search users..."/>
                     
                     <div className="text-[1.1rem] text-[#fff] flex items-center justify-center h-[44px] w-[52px] bg-gradient-to-r from-emerald-500 to-indigo-500 cursor-pointer">
                         <BiSearchAlt className="text-[1.6rem]"/>
