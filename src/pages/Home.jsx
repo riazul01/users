@@ -61,8 +61,13 @@ const Home = () => {
     return (
         <AppLayout>
             <Header searchText={searchText} setSearchText={setSearchText} sortType={sortType} setSortType={setSortType} users={filteredUsers}/>
+            
+            {/* fallbacks */}
             {searchText !== '' && filteredUsers.length === 0 && <p className="py-[2rem] text-[1.2rem]">No items found!</p>}
             {loader && <p className="py-[2rem] text-[1.2rem]">Please wait...</p>}
+            {!loader && !data && <p className="py-[2rem] text-[1.2rem]">Something Wrong!</p>}
+            
+            {/* components */}
             {data && <Users users={filteredUsers}/>}
             {data && <Pagination/>}
         </AppLayout>
