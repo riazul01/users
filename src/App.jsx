@@ -1,7 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+// pages
 import Home from './pages/Home';
 import UserDetails from './pages/UserDetails';
+
+// styles
 import './App.css';
 
 const App = () => {

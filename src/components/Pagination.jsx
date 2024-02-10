@@ -69,7 +69,7 @@ const Pagination = () => {
             {/* set limit */}
             <div className="flex items-center outline-none rounded-lg overflow-hidden">
                 <p className="px-[0.8rem] flex items-center justify-center h-[44px] text-[1.1rem] font-[500] bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500">Limit</p>
-                <select value={limit} onChange={handleLimitChange} name="searchCategory" className="px-[0.6rem] h-[44px] text-[#fff] text-[1.1rem] bg-[#000] border-[2px] border-emerald-500 rounded-r-lg outline-none">
+                <select value={limit} onChange={handleLimitChange} name="limit" className="px-[0.6rem] h-[44px] text-[#fff] text-[1.1rem] bg-[#000] border-[2px] border-emerald-500 rounded-r-lg outline-none">
                     <option value="12">12</option>
                     <option value="24">24</option>
                     <option value="36">36</option>
