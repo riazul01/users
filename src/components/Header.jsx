@@ -4,9 +4,13 @@ import React from 'react';
 import { HiPlus } from "react-icons/hi";
 import { BiSearchAlt } from 'react-icons/bi';
 
-const Header = ({searchText, setSearchText}) => {
+const Header = ({searchText, setSearchText, sortType, setSortType}) => {
     const handleSearchText = (e) => {
         setSearchText(e.target.value);
+    }
+
+    const handleSortType = (e) => {
+        setSortType(e.target.value);
     }
 
     return (
@@ -31,7 +35,7 @@ const Header = ({searchText, setSearchText}) => {
 
                 <div className="flex items-center outline-none rounded-lg overflow-hidden">
                     <p className="px-[0.8rem] flex items-center justify-center h-[44px] text-[1.1rem] font-[500] bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500">Sort by</p>
-                    <select name="searchCategory" className="px-[0.6rem] h-[44px] text-[#fff] text-[1.1rem] bg-[#000] border-[2px] border-emerald-500 rounded-r-lg outline-none">
+                    <select value={sortType} onChange={handleSortType} name="sortType" className="px-[0.6rem] h-[44px] text-[#fff] text-[1.1rem] bg-[#000] border-[2px] border-emerald-500 rounded-r-lg outline-none">
                         <option value="name">Name</option>
                         <option value="email">Email</option>
                         <option value="company">Company Name</option>
