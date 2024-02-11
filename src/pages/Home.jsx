@@ -12,6 +12,21 @@ import AddUserForm from '../components/AddUserForm';
 // context
 import { UsersContext } from '../context/UsersContextProvider';
 
+// handle fallbacks
+const Fallbacks = ({searchText, usersLength, loader, data}) => {
+    let fallbackElem = null;
+
+    if (searchText !== '' && usersLength === 0) {
+        fallbackElem = <p className="py-[2rem] text-[1.2rem]">No items found!</p>;
+    } else if (loader) {
+        fallbackElem = <p className="py-[2rem] text-[1.2rem]">Please wait...</p>;
+    } else if (!loader && !data) {
+        fallbackElem = <p className="py-[2rem] text-[1.2rem]">Something Wrong!</p>;
+    }
+
+    return fallbackElem;
+}
+
 const Home = () => {
     const {data, loader} = useContext(UsersContext);
     const [sortType, setSortType] = useState('name');
@@ -65,9 +80,7 @@ const Home = () => {
             <Header searchText={searchText} setSearchText={setSearchText} sortType={sortType} setSortType={setSortType} setShowForm={setShowForm} users={filteredUsers}/>
             
             {/* fallbacks */}
-            {searchText !== '' && filteredUsers.length === 0 && <p className="py-[2rem] text-[1.2rem]">No items found!</p>}
-            {loader && <p className="py-[2rem] text-[1.2rem]">Please wait...</p>}
-            {!loader && !data && <p className="py-[2rem] text-[1.2rem]">Something Wrong!</p>}
+            <Fallbacks searchText={searchText} usersLength={filteredUsers.length} loader={loader} data={data}/>
             
             {/* users list */}
             {data && <Users users={filteredUsers}/>}
