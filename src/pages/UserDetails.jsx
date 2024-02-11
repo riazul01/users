@@ -30,11 +30,11 @@ const UserDetails = () => {
     return (
         <AppLayout>
             {/* header */}
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col md:flex-row items-center justify-between">
                 <h1 className="text-[#fff] text-[2.2rem] uppercase font-[700] bg-gradient-to-r from-indigo-400 via-sky-400 to-emerald-400 inline-block text-transparent bg-clip-text">User Details.</h1>
                 
                 {/* navigate users */}
-                <div className="flex items-center justify-end gap-[1rem]">
+                <div className="mt-[1rem] md:mt-0 flex items-center justify-end gap-[1rem]">
                     <Link to={`/users/${userId === '1' ? '100' : (parseInt(userId) + 99) % 100}`} className="px-[0.8rem] py-[0.55rem] flex items-center gap-[0.2rem] bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 rounded-lg cursor-pointer">
                         <IoArrowBack className="text-[1.2rem]"/>
                         <span className="text-[1.1rem] font-[500]">Prev</span>
@@ -50,13 +50,19 @@ const UserDetails = () => {
             <Fallbacks user={user} loader={loader} userId={userId}/>
 
             {/* details */}
-            {user && <div className="py-[2rem] flex justify-start gap-[3rem] h-[calc(100vh-200px)]">
+            {user && <div className="py-[2rem] flex flex-col lg:flex-row items-start justify-start gap-[3rem] min-h-[calc(100vh-200px)]">
                 <div className="w-[320px] h-[320px]">
                     <img src={user.image} className="w-full h-full object-cover" alt={user.firstName} />
                     <p className="py-[0.8rem] text-[#ccc] text-[1.2rem] text-center font-[500]">@{user.maidenName}</p>
                 </div>
 
-                <div className="">
+                <div className="mt-[1rem] lg:mt-0">
+                    <div className="flex items-center justify-start gap-[0.8rem]">
+                        <p className="text-[1.4rem] font-[700]">User Id</p>
+                        <span className="h-[0.9rem] w-[0.9rem] rounded-full bg-gradient-to-r from-indigo-400 via-sky-400 to-emerald-400"></span>
+                        <p className="text-[#ccc] text-[1.4rem] font-[500]">{`${user.id}`.padStart(2, '0')}</p>
+                    </div>
+
                     <div className="flex items-center justify-start gap-[0.8rem]">
                         <p className="text-[1.4rem] font-[700]">Name</p>
                         <span className="h-[0.9rem] w-[0.9rem] rounded-full bg-gradient-to-r from-indigo-400 via-sky-400 to-emerald-400"></span>
@@ -102,7 +108,7 @@ const UserDetails = () => {
                     <div className="flex items-center justify-start gap-[0.8rem]">
                         <p className="text-[1.4rem] font-[700]">Address</p>
                         <span className="h-[0.9rem] w-[0.9rem] rounded-full bg-gradient-to-r from-indigo-400 via-sky-400 to-emerald-400"></span>
-                        <p className="text-[#ccc] text-[1.4rem] font-[500]">{user.address.address}, {user.address.state}-{user.address.postalCode}, {user.address.city}</p>
+                        <p className="text-[#ccc] text-[1.4rem] font-[500] truncate">{user.address.address}, {user.address.state}-{user.address.postalCode}, {user.address.city}</p>
                     </div>
 
                     <div className="flex items-center justify-start gap-[0.8rem]">
