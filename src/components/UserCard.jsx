@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const UserCard = ({ user }) => {
     return (
-        <div className="h-auto w-full bg-[#222] rounded-lg overflow-hidden">
+        <div className="h-auto w-full max-w-[340px] bg-[#222] rounded-lg overflow-hidden">
             {/* image */}
             <div className="p-[0.6rem] pb-0 w-full h-[320px]">
                 <img src={user.image} alt={user.firstName} className="w-full h-full object-cover" />
