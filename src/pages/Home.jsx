@@ -71,7 +71,7 @@ const Home = () => {
             
             {/* users list */}
             {data && <Users users={filteredUsers}/>}
-            {/* {data && <Pagination/>} */}
+            {data && <Pagination/>}
 
             {/* add user */}
             {showForm && <AddUserForm setShowForm={setShowForm}/>}
