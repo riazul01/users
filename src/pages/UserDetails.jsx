@@ -7,6 +7,21 @@ import { Link, useLocation } from 'react-router-dom';
 import { IoArrowForward, IoArrowBack } from "react-icons/io5";
 import { HiOutlineExternalLink } from "react-icons/hi";
 
+// handle fallbacks
+const Fallbacks = ({user, loader, userId}) => {
+    let fallbackElem = null;
+
+    if (!(userId > 0 && userId < 101)) {
+        fallbackElem = <p className="py-[2rem] text-[1.2rem]">Invalid User ID!</p>
+    } else if (loader) {
+        fallbackElem = <p className="py-[2rem] text-[1.2rem]">Please wait...</p>
+    } else if (!user && !loader) {
+        fallbackElem = <p className="py-[2rem] text-[1.2rem]">Something Wrong!</p>
+    }
+
+    return fallbackElem;
+}
+
 const UserDetails = () => {
     const location = useLocation();
     const userId = location.pathname.split('/').pop();
@@ -32,8 +47,7 @@ const UserDetails = () => {
             </div>
 
             {/* fallbacks */}
-            {loader && <p className="py-[2rem] text-[1.2rem]">Please wait...</p>}
-            {!user && !loader && <p className="py-[2rem] text-[1.2rem]">Something Wrong!</p>}
+            <Fallbacks user={user} loader={loader} userId={userId}/>
 
             {/* details */}
             {user && <div className="py-[2rem] flex justify-start gap-[3rem] h-[calc(100vh-200px)]">
