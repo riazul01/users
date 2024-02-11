@@ -4,7 +4,7 @@ import React from 'react';
 import { HiPlus } from "react-icons/hi";
 import { BiSearchAlt } from 'react-icons/bi';
 
-const Header = ({searchText, setSearchText, sortType, setSortType, users}) => {
+const Header = ({searchText, setSearchText, sortType, setSortType, setShowForm, users}) => {
     const handleSearchText = (e) => {
         setSearchText(e.target.value);
     }
@@ -27,7 +27,7 @@ const Header = ({searchText, setSearchText, sortType, setSortType, users}) => {
                 </div>
 
                 {/* add user */}
-                <div className="px-[0.8rem] py-[0.55rem] flex items-center bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 rounded-lg cursor-pointer">
+                <div onClick={() => setShowForm(true)} className="px-[0.8rem] py-[0.55rem] flex items-center bg-gradient-to-r from-indigo-500 via-sky-500 to-emerald-500 rounded-lg cursor-pointer">
                     <span className="text-[1.1rem] font-[500] me-[0.3rem]">Add User</span>
                     <HiPlus className="text-[1.2rem]"/>
                 </div>

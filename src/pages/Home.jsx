@@ -7,6 +7,7 @@ import AppLayout from '../layouts/AppLayout';
 import Users from '../components/Users';
 import Header from '../components/Header';
 import Pagination from '../components/Pagination';
+import AddUserForm from '../components/AddUserForm';
 
 // context
 import { UsersContext } from '../context/UsersContextProvider';
@@ -16,6 +17,7 @@ const Home = () => {
     const [sortType, setSortType] = useState('name');
     const [searchText, setSearchText] = useState('');
     const [filteredUsers, setFilteredUsers] = useState([]);
+    const [showForm, setShowForm] = useState(false);
 
     useEffect(() => {
         if (data) {
@@ -60,16 +62,19 @@ const Home = () => {
 
     return (
         <AppLayout>
-            <Header searchText={searchText} setSearchText={setSearchText} sortType={sortType} setSortType={setSortType} users={filteredUsers}/>
+            <Header searchText={searchText} setSearchText={setSearchText} sortType={sortType} setSortType={setSortType} setShowForm={setShowForm} users={filteredUsers}/>
             
             {/* fallbacks */}
             {searchText !== '' && filteredUsers.length === 0 && <p className="py-[2rem] text-[1.2rem]">No items found!</p>}
             {loader && <p className="py-[2rem] text-[1.2rem]">Please wait...</p>}
             {!loader && !data && <p className="py-[2rem] text-[1.2rem]">Something Wrong!</p>}
             
-            {/* components */}
+            {/* users list */}
             {data && <Users users={filteredUsers}/>}
             {data && <Pagination/>}
+
+            {/* add user */}
+            {showForm && <AddUserForm setShowForm={setShowForm}/>}
         </AppLayout>
     );
 }
