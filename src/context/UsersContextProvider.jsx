@@ -11,7 +11,7 @@ const UsersContextProvider = ({children}) => {
     const [data, loader] = useFetch(`https://dummyjson.com/users?skip=${skip}&limit=${limit}`);
 
     return (
-        <UsersContext.Provider value={{data, loader, skip, setSkip, limit, setLimit, currentPage, setCurrentPage, setSkip, setLimit}}>
+        <UsersContext.Provider value={{data, loader, skip, setSkip, limit, setLimit, currentPage, setCurrentPage}}>
             {children}
         </UsersContext.Provider>
     );
