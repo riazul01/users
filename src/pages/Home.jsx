@@ -70,8 +70,8 @@ const Home = () => {
             {!loader && !data && <p className="py-[2rem] text-[1.2rem]">Something Wrong!</p>}
             
             {/* users list */}
-            {data && <Users users={filteredUsers}/>}
-            {data && <Pagination/>}
+            {/* {data && <Users users={filteredUsers}/>}
+            {data && <Pagination/>} */}
 
             {/* add user */}
             {showForm && <AddUserForm setShowForm={setShowForm}/>}
