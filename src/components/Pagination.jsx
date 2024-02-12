@@ -12,7 +12,10 @@ const Pagination = () => {
 
     useEffect(() => {
         setSkip(limit * (currentPage - 1));
-    }, [currentPage]);
+        if (currentPage > totalPages) {
+            setCurrentPage(totalPages);
+        }
+    }, [currentPage, limit]);
 
     const nextPage = () => {
         if (currentPage === totalPages) {
