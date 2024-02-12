@@ -8,8 +8,7 @@ import { MdKeyboardDoubleArrowLeft } from 'react-icons/md';
 import { MdKeyboardDoubleArrowRight } from 'react-icons/md';
 
 const Pagination = () => {
-    const { data, setSkip, limit, setLimit, currentPage, setCurrentPage } = useContext(UsersContext);
-    const totalPages = Math.ceil(data.total / limit);
+    const { setSkip, limit, setLimit, currentPage, setCurrentPage, totalPages } = useContext(UsersContext);
 
     useEffect(() => {
         setSkip(limit * (currentPage - 1));

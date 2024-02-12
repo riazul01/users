@@ -13,14 +13,14 @@ import AddUserForm from '../components/AddUserForm';
 import { UsersContext } from '../context/UsersContextProvider';
 
 // handle fallbacks
-const Fallbacks = ({searchText, usersLength, loader, data}) => {
+const Fallbacks = ({searchText, usersLength, loader, users}) => {
     let fallbackElem = null;
 
     if (searchText !== '' && usersLength === 0) {
         fallbackElem = <p className="py-[2rem] text-[1.2rem]">No items found!</p>;
     } else if (loader) {
         fallbackElem = <p className="py-[2rem] text-[1.2rem]">Please wait...</p>;
-    } else if (!loader && !data) {
+    } else if (!loader && !users) {
         fallbackElem = <p className="py-[2rem] text-[1.2rem]">Something Wrong!</p>;
     }
 
@@ -28,16 +28,16 @@ const Fallbacks = ({searchText, usersLength, loader, data}) => {
 }
 
 const Home = () => {
-    const {data, loader} = useContext(UsersContext);
+    const {users, loader} = useContext(UsersContext);
     const [sortType, setSortType] = useState('name');
     const [searchText, setSearchText] = useState('');
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [showForm, setShowForm] = useState(false);
 
     useEffect(() => {
-        if (data) {
+        if (users) {
             // searching
-            const filteredData = data.users.filter((user) => {
+            const filteredData = users.filter((user) => {
                 let mainTxt = ''.concat(user.firstName, user.lastName).replace(/[^a-zA-Z0-9@]/g, '').toLowerCase();
                 let srchTxt = searchText.replace(/[^a-zA-Z0-9@]/g, '').toLowerCase();
                 if (mainTxt.includes(srchTxt)) return user;
@@ -73,18 +73,27 @@ const Home = () => {
 
             setFilteredUsers(filteredData);
         }
-    }, [data, searchText, sortType]);
+    }, [users, searchText, sortType]);
+
+    useEffect(() => {
+        const body = document.querySelector('body');
+        if (showForm) {
+            body.style.overflow = 'hidden';
+        } else {
+            body.style.overflow = 'auto';
+        }
+    }, [showForm]);
 
     return (
         <AppLayout>
             <Header searchText={searchText} setSearchText={setSearchText} sortType={sortType} setSortType={setSortType} setShowForm={setShowForm} users={filteredUsers}/>
             
             {/* fallbacks */}
-            <Fallbacks searchText={searchText} usersLength={filteredUsers.length} loader={loader} data={data}/>
+            <Fallbacks searchText={searchText} usersLength={filteredUsers.length} loader={loader} users={users}/>
             
             {/* users list */}
-            {data && <Users users={filteredUsers}/>}
-            {data && <Pagination/>}
+            {users && <Users users={filteredUsers}/>}
+            {users && <Pagination/>}
 
             {/* add user */}
             {showForm && <AddUserForm setShowForm={setShowForm}/>}
