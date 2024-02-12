@@ -28,7 +28,7 @@ const Fallbacks = ({searchText, usersLength, loader, users}) => {
 }
 
 const Home = () => {
-    const {users, loader} = useContext(UsersContext);
+    const {users, loader, addedUsers} = useContext(UsersContext);
     const [sortType, setSortType] = useState('name');
     const [searchText, setSearchText] = useState('');
     const [filteredUsers, setFilteredUsers] = useState([]);
@@ -86,7 +86,7 @@ const Home = () => {
 
     return (
         <AppLayout>
-            <Header searchText={searchText} setSearchText={setSearchText} sortType={sortType} setSortType={setSortType} setShowForm={setShowForm} users={filteredUsers}/>
+            <Header searchText={searchText} setSearchText={setSearchText} sortType={sortType} setSortType={setSortType} setShowForm={setShowForm} users={filteredUsers} addedUsers={addedUsers}/>
             
             {/* fallbacks */}
             <Fallbacks searchText={searchText} usersLength={filteredUsers.length} loader={loader} users={users}/>
