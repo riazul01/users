@@ -63,12 +63,14 @@ const AddUserForm = ({setShowForm}) => {
 
     return ReactDOM.createPortal(
         <>
-        <div className="fixed t-0 l-0 py-[3rem] flex items-start justify-center h-screen w-screen bg-[#111] bg-opacity-80 overflow-auto z-10">
+        <div className="fixed top-0 left-0 py-[5rem] flex items-start justify-center h-screen w-screen bg-[#111] bg-opacity-90 overflow-auto z-10">
+            
             {/* close form */}
-            <div onClick={() => setShowForm(false)} className="fixed top-[2rem] right-[2rem] cursor-pointer">
+            <div onClick={() => setShowForm(false)} className="fixed top-[2rem] right-[1rem] sm:right-[2rem] cursor-pointer">
                 <FaTimes className="text-[1.5rem]"/>
             </div>
-            <div className="p-[1rem] w-[420px] bg-[#222] rounded-lg">
+
+            <div className="mx-[0.4rem] p-[1rem] w-full max-w-[420px] bg-[#222] rounded-lg">
                 {/* title */}
                 <h1 className="text-[1.6rem] font-[600]">Add User</h1>
                 <div className="h-[0.4rem] w-[4rem] bg-gradient-to-r from-indigo-400 via-sky-400 to-emerald-400"></div>
@@ -79,7 +81,7 @@ const AddUserForm = ({setShowForm}) => {
                         <input value={user.firstName} onChange={(e) => handleInputChange(e, 'user')} type="text" name="firstName" className="ps-[0.8rem] text-[1.1rem] h-[44px] w-full bg-[#111] border-none outline-none rounded-lg" placeholder="First name" required/>
                         <input value={user.lastName} onChange={(e) => handleInputChange(e, 'user')} type="text" name="lastName" className="ps-[0.8rem] text-[1.1rem] h-[44px] w-full bg-[#111] border-none outline-none rounded-lg" placeholder="Last name" required/>
                     </div>
-                    
+
                     <input value={user.email} onChange={(e) => handleInputChange(e, 'user')} type="email" name="email" className="mt-[1rem] ps-[0.8rem] text-[1.1rem] h-[44px] w-full bg-[#111] border-none outline-none rounded-lg" placeholder="Your email" required/>
                     <input value={company.name} onChange={(e) => handleInputChange(e, 'company')} type="text" name="name" className="mt-[1rem] ps-[0.8rem] text-[1.1rem] h-[44px] w-full bg-[#111] border-none outline-none rounded-lg" placeholder="Company name" required/>
                     <input value={address.address} onChange={(e) => handleInputChange(e, 'address')} type="text" name="address" className="mt-[1rem] ps-[0.8rem] text-[1.1rem] h-[44px] w-full bg-[#111] border-none outline-none rounded-lg" placeholder="Address" required/>
@@ -87,7 +89,7 @@ const AddUserForm = ({setShowForm}) => {
                     <input value={address.city} onChange={(e) => handleInputChange(e, 'address')} type="text" name="city" className="mt-[1rem] ps-[0.8rem] text-[1.1rem] h-[44px] w-full bg-[#111] border-none outline-none rounded-lg" placeholder="City" required/>
                     <input value={address.postalCode} onChange={(e) => handleInputChange(e, 'address')} type="text" name="postalCode" className="mt-[1rem] ps-[0.8rem] text-[1.1rem] h-[44px] w-full bg-[#111] border-none outline-none rounded-lg" placeholder="Postcode" required/>
                     
-                    <div className="mt-[1rem] text-[1.1rem] flex items-center justify-center h-[120px] w-full bg-[#111] rounded-lg">
+                    <div className="mt-[1rem] text-[1.1rem] flex items-center justify-center h-[130px] w-full bg-[#111] rounded-lg">
                         {previewImage === null ? <p>Image preview</p> :
                         <img src={previewImage} className="w-full h-full object-contain" alt="preview"/>}
                     </div>
